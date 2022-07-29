@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive, ref, onBeforeUnmount, onMounted } from 'vue';
+import { Controller } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import SwiperType from 'swiper/types'; //引入类型文件
+import 'swiper/css';
 import _uniqueId from 'lodash/uniqueId';
 import _cloneDeep from 'lodash/cloneDeep';
+import ColorThief from 'colorthief';
 
 import newsImg1 from '@assets/images/home/news_preview1.jpg';
 import newsImg2 from '@assets/images/home/news_preview2.jpg';
@@ -26,6 +31,11 @@ enum CONTACT_METHODS {
   LINKEDIN = 'linkedin',
 }
 
+enum DIRECTION {
+  LEFT,
+  RIGHT,
+}
+
 interface Research {
   id: string;
   title: string;
@@ -37,9 +47,11 @@ interface Project {
   id: string;
   name: string;
   logo: string;
+  bgColor: string;
   link: string;
   description: string;
   memberList: Member[];
+  activeIndex?: number;
 }
 
 interface User {
@@ -186,6 +198,50 @@ const memberList: Member[] = reactive([
       { type: CONTACT_METHODS.LINKEDIN, link: '' },
     ],
   },
+  {
+    id: _uniqueId(),
+    title: 'Executor',
+    introduction: `This is a selected copywriting style，don't tangle with the con-tents of the copy，please？！？！？！`,
+    previewImg: memberLogo2,
+    userInfo: {
+      id: _uniqueId(),
+      name: 'Name',
+      organize: 'UDID',
+      role: 'FullStack',
+      workYears: 10,
+      icon: userIcon2,
+      contacts: [
+        { type: CONTACT_METHODS.TWITTER, link: '' },
+        { type: CONTACT_METHODS.LINKEDIN, link: '' },
+      ],
+    },
+    contacts: [
+      { type: CONTACT_METHODS.TWITTER, link: '' },
+      { type: CONTACT_METHODS.LINKEDIN, link: '' },
+    ],
+  },
+  {
+    id: _uniqueId(),
+    title: 'Executor',
+    introduction: `This is a selected copywriting style，don't tangle with the con-tents of the copy，please？！？！？！`,
+    previewImg: memberLogo2,
+    userInfo: {
+      id: _uniqueId(),
+      name: 'Name',
+      organize: 'UDID',
+      role: 'FullStack',
+      workYears: 10,
+      icon: userIcon2,
+      contacts: [
+        { type: CONTACT_METHODS.TWITTER, link: '' },
+        { type: CONTACT_METHODS.LINKEDIN, link: '' },
+      ],
+    },
+    contacts: [
+      { type: CONTACT_METHODS.TWITTER, link: '' },
+      { type: CONTACT_METHODS.LINKEDIN, link: '' },
+    ],
+  },
 ]);
 
 const newsList: News[] = reactive([
@@ -210,6 +266,7 @@ const projectList: Project[] = reactive([
     id: _uniqueId(),
     name: 'UDID',
     logo: udidLogo,
+    bgColor: '',
     link: '',
     description:
       'UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-',
@@ -218,7 +275,8 @@ const projectList: Project[] = reactive([
   {
     id: _uniqueId(),
     name: 'Oth dApp 1',
-    logo: udidLogo,
+    logo: userIcon1,
+    bgColor: '',
     link: '',
     description: 'Oth dApp 1',
     memberList: _cloneDeep(memberList),
@@ -226,14 +284,99 @@ const projectList: Project[] = reactive([
   {
     id: _uniqueId(),
     name: 'Oth dApp 2',
-    logo: udidLogo,
+    logo: userIcon3,
+    bgColor: '',
     link: '',
     description: 'Oth dApp 2',
     memberList: _cloneDeep(memberList),
   },
 ]);
 
-const selectedProject = reactive(projectList[0]);
+const navList = reactive([
+  {
+    label: 'Research',
+    value: 'research-container',
+  },
+  {
+    label: 'Product',
+    value: 'project-container',
+  },
+  {
+    label: 'Developers',
+    value: 'member-container',
+  },
+  {
+    label: 'Vote',
+    value: 'about-container',
+  },
+  {
+    label: 'News',
+    value: 'social-container',
+  },
+  {
+    label: 'FAQ',
+    value: '',
+  },
+]);
+
+const colorThiefRef = ref<ColorThief | null>(null);
+const projectSwiper = ref<SwiperType.Swiper | null>(null);
+const selectedProjectIndex = ref<number>(0);
+const memberListRefs = ref<HTMLDivElement[]>([]);
+
+const scrollTo = (className: string) => {
+  if (!className) return;
+
+  document.querySelector('.' + className)?.scrollIntoView({ behavior: 'smooth' });
+};
+
+const handleProcjectClick = (index: number) => {
+  selectedProjectIndex.value = index;
+  projectSwiper.value?.slideTo(index, 1000, true);
+};
+
+const handleProjectImgLoaded = (event: Event) => {
+  const img = event.currentTarget as HTMLImageElement;
+  const container = img.closest<HTMLDivElement>('.project-description-info');
+  const beginColor = colorThiefRef.value?.getColor(img);
+
+  if (container && beginColor)
+    container.style.background = `linear-gradient(92.94deg, rgba(${beginColor.join(
+      ', ',
+    )}, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%)`;
+};
+
+const onProjectSwiperInit = (swiper: SwiperType.Swiper) => {
+  projectSwiper.value = swiper;
+  projectSwiper.value.$el.find('.project-description-logo-img').on('load', handleProjectImgLoaded);
+};
+
+const toggleMember = (direction: DIRECTION = DIRECTION.LEFT) => {
+  const length = projectList[selectedProjectIndex.value].memberList.length;
+  let activeIndex = projectList[selectedProjectIndex.value].activeIndex || 0;
+
+  if (direction === DIRECTION.LEFT) {
+    if (activeIndex >= length - 4) return;
+    activeIndex++;
+  } else {
+    if (activeIndex === 0) return;
+    activeIndex--;
+  }
+
+  const currentMemberListContainer = memberListRefs.value[selectedProjectIndex.value];
+  projectList[selectedProjectIndex.value].activeIndex = activeIndex;
+  currentMemberListContainer.style.transform = `translateX(${-208 * activeIndex}px)`;
+};
+
+onMounted(() => {
+  colorThiefRef.value = new ColorThief();
+});
+
+onBeforeUnmount(() => {
+  projectSwiper.value?.$el
+    .find('.project-description-logo-img')
+    .off('load', handleProjectImgLoaded);
+});
 </script>
 
 <template>
@@ -244,12 +387,9 @@ const selectedProject = reactive(projectList[0]);
         <div>
           <i class="banner-nav-logo"></i>
           <nav class="banner-nav-list">
-            <a href="">Research</a>
-            <a href="">Product</a>
-            <a href="">Developers</a>
-            <a href="">Vote</a>
-            <a href="">News</a>
-            <a href="">FAQ</a>
+            <a v-for="nav in navList" :key="nav.label" @click="scrollTo(nav.value)">{{
+              nav.label
+            }}</a>
           </nav>
         </div>
       </div>
@@ -276,53 +416,86 @@ const selectedProject = reactive(projectList[0]);
       </div>
       <div class="project-content-container">
         <div class="project-list-nav">
-          <nav v-for="item in projectList" :key="item.id" class="project-list-nav-item">
+          <nav
+            v-for="(item, index) in projectList"
+            :key="item.id"
+            :class="{ 'project-list-nav-item': true, active: selectedProjectIndex === index }"
+            @click="() => handleProcjectClick(index)"
+          >
             {{ item.name }}
           </nav>
         </div>
         <div class="project-description-container">
-          <div class="project-description-info">
-            <div class="project-description-logo-box">
-              <img :src="selectedProject.logo" alt="" />
-            </div>
-            <div class="project-description-info-box">
-              <p class="project-description-info-text">{{ selectedProject.description }}</p>
-              <nav class="project-description-info-more-btn">More</nav>
-            </div>
-          </div>
-          <div class="project-member-list-container">
-            <div class="project-member-list-box">
-              <nav
-                v-for="member in selectedProject.memberList"
-                :key="member.userInfo.id"
-                class="project-member-list-item"
-              >
-                <img :src="member.userInfo.icon" alt="" />
-                <div class="project-member-list-item-name">
-                  {{ member.userInfo.name }}
+          <swiper
+            :modules="[Controller]"
+            :direction="'vertical'"
+            :allow-touch-move="false"
+            class="mySwiper"
+            @init="onProjectSwiperInit"
+          >
+            <swiper-slide v-for="item in projectList" :key="item.id">
+              <div class="project-description-container-wrapper">
+                <div class="project-description-info">
+                  <div class="project-description-logo-box">
+                    <img
+                      ref="seletedProjectImgRef"
+                      :src="item.logo"
+                      alt=""
+                      class="project-description-logo-img"
+                    />
+                  </div>
+                  <div class="project-description-info-box">
+                    <p class="project-description-info-text">{{ item.description }}</p>
+                    <nav class="project-description-info-more-btn">More</nav>
+                  </div>
                 </div>
-                <div class="project-member-list-item-other-info">
-                  <p>
-                    {{ member.userInfo.organize }}
-                  </p>
-                  <p>
-                    {{ member.userInfo.role }}
-                  </p>
-                  <p>{{ member.userInfo.workYears }} years</p>
+                <div class="project-member-list-container">
+                  <div
+                    class="project-member-list-prev-btn"
+                    @click="toggleMember(DIRECTION.RIGHT)"
+                  ></div>
+                  <div class="project-member-list-box">
+                    <div ref="memberListRefs" class="project-member-list-box-wrapper">
+                      <nav
+                        v-for="member in item.memberList"
+                        :key="member.userInfo.id"
+                        class="project-member-list-item"
+                      >
+                        <img :src="member.userInfo.icon" alt="" />
+                        <div class="project-member-list-item-name">
+                          {{ member.userInfo.name }}
+                        </div>
+                        <div class="project-member-list-item-other-info">
+                          <p>
+                            {{ member.userInfo.organize }}
+                          </p>
+                          <p>
+                            {{ member.userInfo.role }}
+                          </p>
+                          <p>{{ member.userInfo.workYears }} years</p>
+                        </div>
+                        <div class="project-member-list-item-contact-list">
+                          <a
+                            v-for="method in member.userInfo.contacts"
+                            :key="method.type"
+                            class="project-member-list-item-contact-item"
+                          >
+                            <i
+                              :class="'project-member-list-item-contact-item-icon ' + method.type"
+                            ></i>
+                          </a>
+                        </div>
+                      </nav>
+                    </div>
+                  </div>
+                  <div
+                    class="project-member-list-next-btn"
+                    @click="toggleMember(DIRECTION.LEFT)"
+                  ></div>
                 </div>
-                <div class="project-member-list-item-contact-list">
-                  <a
-                    v-for="method in member.userInfo.contacts"
-                    :key="method.type"
-                    class="project-member-list-item-contact-item"
-                  >
-                    <i :class="'project-member-list-item-contact-item-icon ' + method.type"></i>
-                  </a>
-                </div>
-              </nav>
-            </div>
-            <div class="project-member-list-more-btn"></div>
-          </div>
+              </div>
+            </swiper-slide>
+          </swiper>
         </div>
       </div>
     </section>
@@ -335,7 +508,7 @@ const selectedProject = reactive(projectList[0]);
           <div class="member-list-item-img-box"><img :src="item.previewImg" alt="" /></div>
           <div class="member-list-item-desc-box">
             <p class="member-list-item-title">{{ item.title }}</p>
-            <!-- <div class="member-list-item-info">
+            <div class="member-list-item-info">
               <div class="member-list-item-desc">{{ item.introduction }}</div>
               <div class="member-list-item-contact-list">
                 <a
@@ -346,7 +519,7 @@ const selectedProject = reactive(projectList[0]);
                   <i :class="'member-list-item-contact-item-icon ' + method.type"></i>
                 </a>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -364,9 +537,9 @@ const selectedProject = reactive(projectList[0]);
           <div class="qfii-container-list-item-img-box">
             <img :src="item.previewImg" alt="" />
           </div>
-          <!-- <div class="qfii-container-list-item-popup">
+          <div class="qfii-container-list-item-popup">
             <nav class="qfii-container-list-item-popup-icon"></nav>
-          </div> -->
+          </div>
         </div>
       </div>
       <div class="qfii-container-more-btn-box">

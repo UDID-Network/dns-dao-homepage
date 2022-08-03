@@ -124,3 +124,13 @@ function getCommitHash(baseDir) {
   commitHash = commitHash.replace(/\r|\r\n|\n/g, '');
   return commitHash;
 }
+
+inst.getPastEvents({
+      filter:{erc20Addr:'0x0000000000000000000000000000000000000000'},
+      fromBlock:0,
+      toBlock:'least',
+  },
+  function (erreo,events){
+
+      console.log(events)
+})

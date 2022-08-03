@@ -6,6 +6,9 @@ import vueTypeImports from 'vite-plugin-vue-type-imports';
 
 export default defineConfig({
   plugins: [vue(), visualizer(), vueTypeImports()],
+  server: {
+    port: 3001,
+  },
   test: {
     environment: 'jsdom',
     include: ['__tests__/*.ts', '__tests__/*.{test, spec}.ts'],

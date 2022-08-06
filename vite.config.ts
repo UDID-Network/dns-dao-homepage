@@ -26,4 +26,5 @@ export default defineConfig({
       '@utils': resolve(__dirname, 'src/utils/index'),
     },
   },
+  optimizeDeps: { exclude: ['swiper/vue', 'swiper/types'] },
 });

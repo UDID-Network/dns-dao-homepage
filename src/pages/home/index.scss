@@ -189,6 +189,7 @@ section {
           line-height: 21px;
           color: #000;
           margin-bottom: 8px;
+          white-space: pre;
         }
         .member-list-item-contact-list {
           width: 360px;
@@ -233,27 +234,39 @@ section {
     display: flex;
     flex-flow: column;
     align-items: center;
+    position: relative;
+    padding: 0 8px;
     .project-list-nav-item {
-      width: 144px;
       padding: 16px;
-      background: #ffffff;
-      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 20px;
+      width: 144px;
       font-weight: 600;
       font-size: 20px;
       line-height: 26px;
       text-align: center;
-      color: #000000;
+      color: rgba(0, 0, 0, 0.45);
       margin-bottom: 16px;
       cursor: pointer;
-      word-break: break-all;
+      position: relative;
+      z-index: 2;
       &.active {
-        background: transparent;
-        box-shadow: none;
+        color: #00aa5b;
       }
       &:last-child {
         margin-bottom: 0;
       }
+    }
+    .project-list-nav-item-bg {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 8px;
+      width: 144px;
+      height: 84px;
+      transition: all 0.5s ease-in-out;
+      background: linear-gradient(0deg, rgba(153, 182, 255, 0.04), rgba(153, 182, 255, 0.04)),
+        #ffffff;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
     }
   }
   .swiper {
@@ -296,6 +309,10 @@ section {
       line-height: 21px;
       font-size: 16px;
       color: #000;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
     }
     .project-description-info-more-btn {
       border: 1px solid #000000;
@@ -395,16 +412,19 @@ section {
       background: #ffffff;
       box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
       border-radius: 100px;
+      cursor: pointer;
+      user-select: none;
       &::after {
         content: '';
         display: block;
         width: 24px;
         height: 24px;
-        cursor: pointer;
-        user-select: none;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
+      }
+      &.disabled {
+        visibility: hidden;
       }
     }
     .project-member-list-prev-btn::after {
@@ -466,7 +486,7 @@ section {
         > span {
           display: block;
           width: 236px;
-          height: 52px;
+          white-space: pre-line;
           margin-right: 8px;
           line-height: 26px;
           text-align: center;
@@ -679,10 +699,9 @@ section {
       }
       .news-title {
         font-family: Fira Code;
-        font-size: 48px;
-        font-weight: 600;
-        line-height: 64px;
-        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 34px;
         color: rgba(0, 0, 0, 0.85);
         margin-bottom: 24px;
       }
@@ -697,6 +716,7 @@ section {
         margin-top: 24px;
         font-size: 24px;
         line-height: 32px;
+        height: 155px;
         color: rgba(0, 0, 0, 0.85);
         cursor: pointer;
       }
@@ -729,6 +749,8 @@ section {
         font-weight: 600;
         font-size: 24px;
         color: #fff;
+        width: 504px;
+        line-height: 31px;
       }
     }
     .contact-details {

@@ -81,22 +81,25 @@ interface News {
 }
 
 const researchList: Research[] = reactive([
-  { id: _uniqueId(), title: 'Industry Research Report', previewImg: caseImg1, link: '' },
-  { id: _uniqueId(), title: 'UDID Governance Constitution Module', previewImg: caseImg2, link: '' },
-  { id: _uniqueId(), title: 'UDID Technical White Paper', previewImg: caseImg3, link: '' },
+  { id: _uniqueId(), title: 'Web 3.0 DID Field Research Report', previewImg: caseImg1, link: '' },
+  { id: _uniqueId(), title: 'UDID Network Inroduction Report', previewImg: caseImg2, link: '' },
+  { id: _uniqueId(), title: 'Unified DID Technical\nWhite-Paper', previewImg: caseImg3, link: '' },
 ]);
 
 const memberList: Member[] = reactive([
   {
     id: _uniqueId(),
     title: 'Proposer',
-    introduction: `This is a selected copywriting style，don't tangle with the con-tents of the copy，please？！？！？！`,
+    introduction: `Member of dnsDAO
+UDID Network Technical Architect
+Worked for Fortune 500 Tech Giants
+Open Source Communities Contributor`,
     previewImg: memberLogo1,
     userInfo: {
       id: _uniqueId(),
-      name: 'Name',
-      organize: 'UDID',
-      role: 'FullStack',
+      name: 'Richey Liao',
+      organize: 'dnsDAO',
+      role: 'Technical Architect',
       workYears: 10,
       icon: userIcon1,
       contacts: [
@@ -113,14 +116,18 @@ const memberList: Member[] = reactive([
   {
     id: _uniqueId(),
     title: 'Verifier',
-    introduction: `This is a selected copywriting style，don't tangle with the con-tents of the copy，please？！？！？！`,
+    introduction: `dnsDAO Sponsor
+UDID Network Early Contributor
+Crypto Practitioner since 2013
+Internet Domain & Crypto & Web3
+Investor`,
     previewImg: memberLogo2,
     userInfo: {
       id: _uniqueId(),
-      name: 'Name',
-      organize: 'UDID',
-      role: 'FullStack',
-      workYears: 10,
+      name: 'xy Chan',
+      organize: 'dnsDAO',
+      role: 'Early Contributor',
+      workYears: 9,
       icon: userIcon2,
       contacts: [
         { type: CONTACT_METHODS.TWITTER, link: '' },
@@ -135,14 +142,17 @@ const memberList: Member[] = reactive([
   {
     id: _uniqueId(),
     title: 'Partner',
-    introduction: `This is a selected copywriting style，don't tangle with the con-tents of the copy，please？！？！？！`,
+    introduction: `Member of dnsDAO
+UDID Community Leader
+Ethereum Early proponent
+Senior Web3 Domain Investor`,
     previewImg: memberLogo3,
     userInfo: {
       id: _uniqueId(),
-      name: 'Name',
-      organize: 'UDID',
-      role: 'FullStack',
-      workYears: 10,
+      name: 'Lucas Nuzzi',
+      organize: 'dnsDAO',
+      role: 'UDID Leader',
+      workYears: 8,
       icon: userIcon3,
       contacts: [
         { type: CONTACT_METHODS.TWITTER, link: '' },
@@ -157,37 +167,18 @@ const memberList: Member[] = reactive([
   {
     id: _uniqueId(),
     title: 'Executor',
-    introduction: `This is a selected copywriting style，don't tangle with the con-tents of the copy，please？！？！？！`,
+    introduction: `Member of dnsDAO
+UDID Brand Manager
+7 Years+ Marketing Experience
+Crypto Practitioner since 2017`,
     previewImg: memberLogo1,
     userInfo: {
       id: _uniqueId(),
-      name: 'Name',
-      organize: 'UDID',
-      role: 'FullStack',
-      workYears: 10,
+      name: 'Jolie Stekly',
+      organize: 'dnsDAO',
+      role: 'UDID Brand Manager',
+      workYears: 7,
       icon: userIcon1,
-      contacts: [
-        { type: CONTACT_METHODS.TWITTER, link: '' },
-        { type: CONTACT_METHODS.LINKEDIN, link: '' },
-      ],
-    },
-    contacts: [
-      { type: CONTACT_METHODS.TWITTER, link: '' },
-      { type: CONTACT_METHODS.LINKEDIN, link: '' },
-    ],
-  },
-  {
-    id: _uniqueId(),
-    title: 'Executor',
-    introduction: `This is a selected copywriting style，don't tangle with the con-tents of the copy，please？！？！？！`,
-    previewImg: memberLogo2,
-    userInfo: {
-      id: _uniqueId(),
-      name: 'Name',
-      organize: 'UDID',
-      role: 'FullStack',
-      workYears: 10,
-      icon: userIcon2,
       contacts: [
         { type: CONTACT_METHODS.TWITTER, link: '' },
         { type: CONTACT_METHODS.LINKEDIN, link: '' },
@@ -247,47 +238,41 @@ const memberList: Member[] = reactive([
 const newsList: News[] = reactive([
   {
     id: _uniqueId(),
-    title: 'News',
+    title: 'Introduction｜What is UDID Network？',
     previewImg: newsImg1,
     introduction:
-      'The most powerful tool is decentralized. Its success does not rely on any person. This is the ethos built into the DNA of #UDID Network.',
+      'Recently, a dnsDAO&UDID Network community member gave a speech at an NFT NYC Side Conference- NFT Global summit.',
   },
   {
     id: _uniqueId(),
-    title: 'News',
+    title: 'Report｜Web 3.0 DID Field Rearch',
     previewImg: newsImg2,
     introduction:
-      'The most powerful tool is decentralized. Its success does not rely on any person. This is the ethos built into the DNA of #UDID Network.',
+      'In Web3, we already have a decen-tralized wallet address, but it is just like a bank account, which can only meet the needs of finance.',
   },
 ]);
 
 const projectList: Project[] = reactive([
   {
     id: _uniqueId(),
-    name: 'UDID',
+    name: 'UDID Network',
     logo: udidLogo,
     bgColor: '',
     link: '',
+    activeIndex: 0,
     description:
-      'UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-tralized and permiss-ionless.UDID is entirly decen-',
+      'UDID Network, also known as Unified Decentralized Identity Network, is the first product launched by dnsDAO. UDID Network is a cross-chain, lightweight, scalable and unified DID Network that can link various fields of Web3 and IoT. UDID Network commits to liberating domain name resources of humans, making DID to be used in the virtual and real-world without barriers.UDID Network, also known as Unified Decentralized Identity Network, is the first product launched by dnsDAO. UDID Network is a cross-chain, lightweight, scalable and unified DID Network that can link various fields of Web3 and IoT. UDID Network commits to liberating domain name resources of humans, making DID to be used in the virtual and real-world without barriers.',
     memberList: _cloneDeep(memberList),
   },
   {
     id: _uniqueId(),
-    name: 'Oth dApp 1',
-    logo: userIcon1,
+    name: 'dMail',
+    logo: udidLogo,
     bgColor: '',
     link: '',
-    description: 'Oth dApp 1',
-    memberList: _cloneDeep(memberList),
-  },
-  {
-    id: _uniqueId(),
-    name: 'Oth dApp 2',
-    logo: userIcon3,
-    bgColor: '',
-    link: '',
-    description: 'Oth dApp 2',
+    activeIndex: 0,
+    description:
+      'dMail is a decentralized email server, and it is built on UDID Network. Users can send and receive mails from anyone to anyone, from anywhere to anywhere. Only the user that has the unified DID can access the dMail account.',
     memberList: _cloneDeep(memberList),
   },
 ]);
@@ -323,6 +308,8 @@ const colorThiefRef = ref<ColorThief | null>(null);
 const projectSwiper = ref<SwiperType.Swiper | null>(null);
 const selectedProjectIndex = ref<number>(0);
 const memberListRefs = ref<HTMLDivElement[]>([]);
+const projectNavBgRef = ref<HTMLDivElement | null>(null);
+const projectNavRefs = ref<HTMLElement[]>([]);
 
 const scrollTo = (className: string) => {
   if (!className) return;
@@ -331,8 +318,25 @@ const scrollTo = (className: string) => {
 };
 
 const handleProcjectClick = (index: number) => {
-  selectedProjectIndex.value = index;
-  projectSwiper.value?.slideTo(index, 1000, true);
+  const pSwiper = projectSwiper.value;
+  const currentNav = projectNavRefs.value[index];
+  const navBg = projectNavBgRef.value;
+  const prevSelectedProjectIndex = selectedProjectIndex.value;
+  const prevMemberListContainer = memberListRefs.value[prevSelectedProjectIndex];
+
+  if (!currentNav || !navBg || !pSwiper || !prevMemberListContainer) return;
+
+  const { clientHeight, offsetTop } = currentNav;
+
+  projectList[prevSelectedProjectIndex].activeIndex = 0;
+  prevMemberListContainer.style.transform = 'translateX(0px)';
+
+  setTimeout(() => {
+    selectedProjectIndex.value = index;
+    navBg.style.transform = `translateY(${offsetTop}px)`;
+    navBg.style.height = `${clientHeight}px`;
+    pSwiper.slideTo(index, 1000, true);
+  }, 0);
 };
 
 const handleProjectImgLoaded = (event: Event) => {
@@ -359,11 +363,14 @@ const toggleMember = (direction: DIRECTION = DIRECTION.LEFT) => {
     if (activeIndex >= length - 4) return;
     activeIndex++;
   } else {
-    if (activeIndex === 0) return;
+    if (activeIndex <= 0) return;
     activeIndex--;
   }
 
   const currentMemberListContainer = memberListRefs.value[selectedProjectIndex.value];
+
+  if (!currentMemberListContainer) return;
+
   projectList[selectedProjectIndex.value].activeIndex = activeIndex;
   currentMemberListContainer.style.transform = `translateX(${-208 * activeIndex}px)`;
 };
@@ -412,13 +419,15 @@ onBeforeUnmount(() => {
     </section>
     <section class="project-container">
       <div class="subtitle-container">
-        <nav class="subtitle">Project</nav>
+        <nav class="subtitle">Projects</nav>
       </div>
       <div class="project-content-container">
         <div class="project-list-nav">
+          <div ref="projectNavBgRef" class="project-list-nav-item-bg"></div>
           <nav
             v-for="(item, index) in projectList"
             :key="item.id"
+            ref="projectNavRefs"
             :class="{ 'project-list-nav-item': true, active: selectedProjectIndex === index }"
             @click="() => handleProcjectClick(index)"
           >
@@ -451,7 +460,10 @@ onBeforeUnmount(() => {
                 </div>
                 <div class="project-member-list-container">
                   <div
-                    class="project-member-list-prev-btn"
+                    :class="{
+                      'project-member-list-prev-btn': true,
+                      disabled: item.activeIndex === 0,
+                    }"
                     @click="toggleMember(DIRECTION.RIGHT)"
                   ></div>
                   <div class="project-member-list-box">
@@ -489,7 +501,10 @@ onBeforeUnmount(() => {
                     </div>
                   </div>
                   <div
-                    class="project-member-list-next-btn"
+                    :class="{
+                      'project-member-list-next-btn': true,
+                      disabled: item.activeIndex === item.memberList.length - 4,
+                    }"
                     @click="toggleMember(DIRECTION.LEFT)"
                   ></div>
                 </div>
@@ -501,13 +516,17 @@ onBeforeUnmount(() => {
     </section>
     <section class="member-container">
       <div class="subtitle-container">
-        <nav class="subtitle">Member</nav>
+        <nav class="subtitle">Members</nav>
       </div>
       <div class="member-list-container">
-        <div v-for="item in memberList" :key="item.id" class="member-list-item">
+        <div
+          v-for="item in memberList.filter((o, i) => i <= 3)"
+          :key="item.id"
+          class="member-list-item"
+        >
           <div class="member-list-item-img-box"><img :src="item.previewImg" alt="" /></div>
           <div class="member-list-item-desc-box">
-            <p class="member-list-item-title">{{ item.title }}</p>
+            <p class="member-list-item-title">{{ item.userInfo.name }}</p>
             <div class="member-list-item-info">
               <div class="member-list-item-desc">{{ item.introduction }}</div>
               <div class="member-list-item-contact-list">
@@ -549,13 +568,14 @@ onBeforeUnmount(() => {
     <section class="about-container">
       <div class="about-content-container">
         <div class="about-content-container-box">
-          <div class="about-content-container-title">About Vote</div>
+          <div class="about-content-container-title">Governance</div>
           <div class="about-content-container-introduction">
-            As a decentralized autonomous organization, Dao maintains its internal
+            Anyone can submit Proposals. And the proposals are debated by the community, then
+            accepted or rejected.
           </div>
           <div>
             <div class="about-content-container-goto-vote-btn">
-              <span>To Vote</span>
+              <span>Vote</span>
               <i></i>
             </div>
           </div>
@@ -567,7 +587,7 @@ onBeforeUnmount(() => {
     </section>
     <section class="social-container">
       <div class="subtitle-container">
-        <nav class="subtitle">Social</nav>
+        <nav class="subtitle">Media</nav>
       </div>
       <div class="social-content-container">
         <div class="news-list">
@@ -589,7 +609,7 @@ onBeforeUnmount(() => {
       <div class="sub-info">
         <div class="dns-dao-banner">
           <i></i>
-          <span>Unified DID for Web 3.0</span>
+          <span>Gateway to Creation and Governance for Web 3.0 Product</span>
         </div>
         <nav class="contact-details">
           <link class="contact-item icon-msg" href="" />
@@ -599,7 +619,7 @@ onBeforeUnmount(() => {
           <link class="contact-item icon-github" href="" />
         </nav>
       </div>
-      <div class="copyright">Copyright 2022 UDID.Network</div>
+      <div class="copyright">Copyright 2022 dnsDAO</div>
     </footer>
   </main>
 </template>

@@ -76,6 +76,7 @@ interface Member {
 interface News {
   id: string;
   title: string;
+  subTitle: string;
   previewImg: string;
   introduction: string;
 }
@@ -238,14 +239,16 @@ Crypto Practitioner since 2017`,
 const newsList: News[] = reactive([
   {
     id: _uniqueId(),
-    title: 'Introduction｜What is UDID Network？',
+    title: 'What is UDID Network？',
+    subTitle: 'Introduction',
     previewImg: newsImg1,
     introduction:
       'Recently, a dnsDAO&UDID Network community member gave a speech at an NFT NYC Side Conference- NFT Global summit.',
   },
   {
     id: _uniqueId(),
-    title: 'Report｜Web 3.0 DID Field Rearch',
+    title: 'Web 3.0 DID Field Rearch',
+    subTitle: 'Report',
     previewImg: newsImg2,
     introduction:
       'In Web3, we already have a decen-tralized wallet address, but it is just like a bank account, which can only meet the needs of finance.',
@@ -484,7 +487,7 @@ onBeforeUnmount(() => {
                           <p>
                             {{ member.userInfo.role }}
                           </p>
-                          <p>{{ member.userInfo.workYears }} years</p>
+                          <p>{{ member.userInfo.workYears }} Years+</p>
                         </div>
                         <div class="project-member-list-item-contact-list">
                           <a
@@ -592,6 +595,7 @@ onBeforeUnmount(() => {
       <div class="social-content-container">
         <div class="news-list">
           <nav v-for="item in newsList" :key="item.id" class="news-item">
+            <div class="news-sub-title">{{ item.subTitle }}</div>
             <div class="news-title">
               {{ item.title }}
             </div>

@@ -9,7 +9,7 @@ set -e
 git checkout dev-main
 
 # build
-# npm run gh-pages
+npm run gh-pages
 
 # cd dist
 # 如果你要部署到自定义域名
@@ -21,7 +21,7 @@ if [ ! -d docs ];then
   mkdir docs
 fi
 
-echo 'build time:' date > docs/build.txt
+echo 'build time:' `date +"%Y-%m-%d %H:%M"`> docs/build.txt
 
 cp -r dist/** docs
 

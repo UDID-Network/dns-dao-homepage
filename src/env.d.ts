@@ -9,8 +9,12 @@ declare module '*.vue' {
 
 declare namespace NodeJS {
   interface ProcessEnv {
-    NODE_ENV: 'development' | 'production' | 'test';
+    NODE_ENV: 'development' | 'production' | 'test' | 'staging';
   }
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
 }
 
 declare module 'colorthief' {

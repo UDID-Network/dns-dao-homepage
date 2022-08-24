@@ -66,7 +66,7 @@ function precheckEnv() {
 
   const sermever = version.replaceAll('.', '');
   const commitHash = getCommitHash(execBaseDir);
-  const zipFileName = `${dateInfo.m}${dateInfo.d}_${BASE_VARS.name}-${sermever}-${commitHash}`;
+  const zipFileName = `${BASE_VARS.name}_${dateInfo.m}${dateInfo.d}-${sermever}-${commitHash}`;
 
   const envArgs = Object.assign({}, BASE_VARS, {
     version,

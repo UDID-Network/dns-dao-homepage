@@ -22,7 +22,7 @@ if [ ! -d docs ];then
 fi
 
 set ts=date
-echo 'build time:' ts > build.txt
+echo 'build time:' $ts > docs/build.txt
 
 cp -r dist/** docs
 

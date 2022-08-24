@@ -3,8 +3,8 @@
 set -e
 
 # git commit local
-git add .
-git commit -am 'commit local for deploy'
+# git add .
+# git commit -am 'commit local for deploy'
 
 git checkout dev-main
 
@@ -16,8 +16,9 @@ cd dist
 # echo 'www.example.com' > CNAME
 cd ..
 
-rm -rf ./docs
-cp dist/** ./docs
+rm -rf ./docs/**
+mkdir docs
+cp -r dist/** docs
 
 git add ./docs
 git commit -am 'deploy:gh-pages'

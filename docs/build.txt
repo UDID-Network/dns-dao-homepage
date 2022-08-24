@@ -1,1 +1,1 @@
-build time:
+build time: date

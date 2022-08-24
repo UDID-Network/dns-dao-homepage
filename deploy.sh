@@ -21,8 +21,7 @@ if [ ! -d docs ];then
   mkdir docs
 fi
 
-set ts=date
-echo 'build time:' $ts > docs/build.txt
+echo 'build time:' date > docs/build.txt
 
 cp -r dist/** docs
 

@@ -9,15 +9,21 @@ set -e
 git checkout dev-main
 
 # build
-npm run gh-pages
+# npm run gh-pages
 
-cd dist
+# cd dist
 # 如果你要部署到自定义域名
 # echo 'www.example.com' > CNAME
-cd ..
+# cd ..
 
 rm -rf ./docs/**
-mkdir docs
+if [ ! -d docs ];then
+  mkdir docs
+fi
+
+set ts=date
+echo 'build time:' ts > build.txt
+
 cp -r dist/** docs
 
 git add ./docs

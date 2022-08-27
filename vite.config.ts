@@ -6,7 +6,7 @@ import vueTypeImports from 'vite-plugin-vue-type-imports';
 
 export default defineConfig({
   plugins: [vue(), visualizer(), vueTypeImports()],
-  base: '/dnsdao/',
+  // base: '/',
   server: {
     port: 3001,
   },

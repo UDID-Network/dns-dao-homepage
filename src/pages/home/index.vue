@@ -17,7 +17,7 @@ import caseImg2 from '@assets/images/home/case_preview_2.png';
 import caseImg3 from '@assets/images/home/case_preview_3.png';
 
 import ResearchReport from '@assets/files/Web_3.0_DID_Field_Research_Report.pdf';
-import IntroductionReport from '@assets/files/UDID_Network_Introduction_Report.pdf';
+// import IntroductionReport from '@assets/files/UDID_Network_Introduction_Report.pdf';
 import WhitePaper from '@assets/files/Technical_White_Paper.pdf';
 
 const researchList: Research[] = reactive([
@@ -31,7 +31,7 @@ const researchList: Research[] = reactive([
     id: _uniqueId(),
     title: 'UDID Network Introduction Report',
     previewImg: caseImg2,
-    link: IntroductionReport,
+    link: '/pdf2',
   },
   {
     id: _uniqueId(),

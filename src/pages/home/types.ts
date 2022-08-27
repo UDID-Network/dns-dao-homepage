@@ -53,3 +53,8 @@ export interface News {
   introduction: string;
   link: string;
 }
+
+export interface DocPage {
+  id: string;
+  url: string;
+}

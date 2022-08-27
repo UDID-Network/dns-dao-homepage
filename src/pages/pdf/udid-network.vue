@@ -19,6 +19,7 @@ import page13 from '@assets/pdf/UDID_Network_English_Introduction_1.0.1_12.jpg';
 import page14 from '@assets/pdf/UDID_Network_English_Introduction_1.0.1_13.jpg';
 import page15 from '@assets/pdf/UDID_Network_English_Introduction_1.0.1_14.jpg';
 import page16 from '@assets/pdf/UDID_Network_English_Introduction_1.0.1_15.jpg';
+import page17 from '@assets/pdf/UDID_Network_English_Introduction_1.0.1_16.jpg';
 
 const items: DocPage[] = reactive([
   {
@@ -84,6 +85,10 @@ const items: DocPage[] = reactive([
   {
     id: _uniqueId(),
     url: page16,
+  },
+  {
+    id: _uniqueId(),
+    url: page17,
   },
 ]);
 </script>

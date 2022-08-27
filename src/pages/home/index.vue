@@ -31,7 +31,7 @@ const researchList: Research[] = reactive([
     id: _uniqueId(),
     title: 'UDID Network Introduction Report',
     previewImg: caseImg2,
-    link: '/pdf2',
+    link: './pdf2',
   },
   {
     id: _uniqueId(),

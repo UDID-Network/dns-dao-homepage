@@ -17,6 +17,7 @@ export interface Research {
   title: string;
   previewImg: string;
   link: string;
+  clicked: boolean;
 }
 
 export interface Project {

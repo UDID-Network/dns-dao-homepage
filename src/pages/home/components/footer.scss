@@ -1,0 +1,67 @@
+.footer-container {
+  background: #020112;
+  > div {
+    width: 1136px;
+    margin: 0 auto;
+  }
+  .sub-info {
+    height: 184px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .dns-dao-banner {
+      display: flex;
+      align-items: center;
+      i {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        background: url('@assets/images/home/dns_dao_logo.png') center center no-repeat;
+        background-size: cover;
+        margin-right: 24px;
+      }
+      span {
+        font-weight: 600;
+        font-size: 24px;
+        color: #fff;
+        width: 504px;
+        line-height: 31px;
+      }
+    }
+    .contact-details {
+      .contact-item {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        cursor: pointer;
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0;
+        }
+        &.icon-discord {
+          background-image: url('@assets/images/home/icon_discord.png');
+        }
+        &.icon-twitter {
+          background-image: url('@assets/images/home/icon_twitter.png');
+        }
+        &.icon-youtube {
+          background-image: url('@assets/images/home/icon_youtube.png');
+        }
+        &.icon-telegram {
+          background-image: url('@assets/images/home/icon_telegram.png');
+        }
+        &.icon-medium {
+          background-image: url('@assets/images/home/icon_medium.png');
+        }
+      }
+    }
+  }
+  .copyright {
+    color: #fff;
+    line-height: 40px;
+    font-size: 16px;
+  }
+}

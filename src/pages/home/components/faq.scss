@@ -1,0 +1,86 @@
+.faq-container {
+  .home-page-subtitle-container {
+    width: 634px;
+    height: 148px;
+    margin: 20px auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left-item {
+      width: 122px;
+      height: 122px;
+      background: url('@assets/images/home/faq_title_left.png') center center no-repeat;
+      background-size: cover;
+      align-self: flex-start;
+    }
+    .center-item {
+      width: 108px;
+      height: 90px;
+      background: url('@assets/images/home/faq_title_center.png') center center no-repeat;
+      background-size: cover;
+    }
+    .right-item {
+      width: 116px;
+      height: 116px;
+      background: url('@assets/images/home/faq_title_right.png') center center no-repeat;
+      background-size: cover;
+      align-self: flex-end;
+    }
+  }
+  .faq-list-container {
+    width: 1136px;
+    margin: 0 auto;
+    .faq-list-item {
+      margin-bottom: 48px;
+      padding: 16px;
+      background: rgba(2, 1, 18, 0.02);
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+      letter-spacing: -1px;
+    }
+    .faq-list-item-question {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      line-height: 1.5;
+      font-weight: 600;
+      .faq-list-item-i {
+        display: block;
+        width: 80px;
+        height: 80px;
+        line-height: 82px;
+        text-align: center;
+        background: rgba(0, 170, 91, 0.08);
+        border-radius: 9px;
+        font-weight: 600;
+        font-size: 54px;
+        color: #00aa5b;
+        margin-right: 16px;
+        user-select: none;
+      }
+      .faq-list-item-q {
+        color: #00aa5b;
+        margin-right: 14px;
+        user-select: none;
+      }
+    }
+    .faq-list-item-answer {
+      background: rgba(0, 170, 91, 0.08);
+      border-radius: 20px;
+      padding: 16px 24px;
+      margin-top: 16px;
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 600;
+      .faq-list-item-a {
+        color: #00aa5b;
+        margin-right: 14px;
+        user-select: none;
+      }
+      .faq-list-item-a-content {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+  }
+}

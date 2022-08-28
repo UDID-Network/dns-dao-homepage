@@ -21,3 +21,37 @@ body {
   display: block;
   clear: both;
 }
+
+main {
+  min-height: 100vh;
+  min-width: 1200px;
+}
+
+.home-page-subtitle-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 174px;
+  padding-bottom: 74px;
+  .subtitle {
+    user-select: none;
+    display: block;
+    padding: 0 60px;
+    line-height: 80px;
+    color: #000;
+    font-size: 48px;
+    font-weight: 600;
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      background: url('@assets/images/home/subtittle_bg.png') center center no-repeat;
+      background-size: cover;
+      width: 80px;
+      height: 80px;
+      left: 0;
+      top: 0;
+      z-index: 0;
+    }
+  }
+}

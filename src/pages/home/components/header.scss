@@ -1,0 +1,80 @@
+.banner-container {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+  .banner-container-bg {
+    background: url('@assets/images/home/banner_bg.jpg') center center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .banner-nav-container {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    max-width: 1716px;
+    width: 100%;
+    padding: 16px 50px;
+    z-index: 2;
+    > div {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .banner-nav-logo {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      top: 0;
+      left: 0;
+      &::before {
+        content: '';
+        display: block;
+        background: url('@assets/images/home/dns_dao_logo.png') center center no-repeat;
+        background-size: cover;
+        width: 48px;
+        height: 48px;
+        margin-right: 8px;
+      }
+      &::after {
+        content: '';
+        display: block;
+        background: url('@assets/images/home/dns_dao_logo_label.png') center center no-repeat;
+        background-size: 100% auto;
+        width: 94px;
+        height: 34px;
+      }
+    }
+    .banner-nav-list {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      > a {
+        display: block;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #ffffff;
+        margin-right: 56px;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

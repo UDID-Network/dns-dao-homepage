@@ -32,7 +32,6 @@ export interface Project {
 
 export interface Member {
   id: string;
-  introduction: string;
   name: string;
   workYears: number;
   icon: string;

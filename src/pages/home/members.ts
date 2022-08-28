@@ -19,12 +19,8 @@ import userIcon15 from '@assets/images/common/users/asset_15.png';
 
 export const mbRicheyLiao = {
   id: _uniqueId(),
-  introduction: `Member of dnsDAO
-  UDID Network Technical Architect
-  Worked for Fortune 500 Tech Giants
-  Open Source Communities Contributor`,
   name: 'Richey Liao',
-  role: 'BlockchainArchitect',
+  role: 'Blockchain Architect',
   workYears: 20,
   icon: userIcon1,
   contacts: [
@@ -35,8 +31,6 @@ export const mbRicheyLiao = {
 
 export const mbWadeTsai = {
   id: _uniqueId(),
-  introduction: `Blockchain Engineer
-  20 Years+`,
   name: 'Wade Tsai',
   role: 'Blockchain Engineer',
   workYears: 20,
@@ -49,10 +43,6 @@ export const mbWadeTsai = {
 
 export const mbXYChan = {
   id: _uniqueId(),
-  introduction: `dnsDAO Sponsor
-  UDID Network Early Contributor
-  Crypto Practitioner since 2013
-  Internet Domain & Crypto & Web3 Investor`,
   name: 'XY Chan',
   role: 'Blockchain Industry Early Invester',
   workYears: 15,
@@ -62,9 +52,6 @@ export const mbXYChan = {
 
 export const mbLucas = {
   id: _uniqueId(),
-  introduction: `Blockchain Industry
-  Early Invester
-  13 Years+`,
   name: 'Lucas',
   role: 'Blockchain Industry Early Invester',
   workYears: 13,
@@ -74,8 +61,6 @@ export const mbLucas = {
 
 export const mbSion = {
   id: _uniqueId(),
-  introduction: `Blockchain Engineer
-  10 Years+`,
   name: 'Sion',
   role: 'Blockchain Engineer',
   workYears: 10,
@@ -88,8 +73,6 @@ export const mbSion = {
 
 export const mbWell = {
   id: _uniqueId(),
-  introduction: `Frontend Engineer
-  3 Years+`,
   name: 'Well',
   role: 'Frontend Engineer',
   workYears: 3,
@@ -99,8 +82,6 @@ export const mbWell = {
 
 export const mbBin = {
   id: _uniqueId(),
-  introduction: `Backend Engineer
-  8 Years+`,
   name: 'Bin',
   role: 'Backend Engineer',
   workYears: 8,
@@ -110,8 +91,6 @@ export const mbBin = {
 
 export const mbMaksim = {
   id: _uniqueId(),
-  introduction: `Community Manager
-  3 Years+`,
   name: 'Maksim',
   role: 'Community Manager',
   workYears: 3,
@@ -121,8 +100,6 @@ export const mbMaksim = {
 
 export const mbFang = {
   id: _uniqueId(),
-  introduction: `Product Manager
-  8 Years+`,
   name: 'Fang',
   role: 'Product Manager',
   workYears: 8,
@@ -132,8 +109,6 @@ export const mbFang = {
 
 export const mbRefu = {
   id: _uniqueId(),
-  introduction: `UI Designer
-  5 Years+`,
   name: 'Refu',
   role: 'UI Designer',
   workYears: 5,
@@ -143,8 +118,6 @@ export const mbRefu = {
 
 export const mbMark = {
   id: _uniqueId(),
-  introduction: `Community Manager
-  7 Years+`,
   name: 'Mark',
   role: 'Community Manager',
   workYears: 7,
@@ -154,8 +127,6 @@ export const mbMark = {
 
 export const mbM = {
   id: _uniqueId(),
-  introduction: `Business Developer
-  10 Years+`,
   name: 'M',
   role: 'Business Developer',
   workYears: 10,
@@ -165,8 +136,6 @@ export const mbM = {
 
 export const mbLU = {
   id: _uniqueId(),
-  introduction: `UI Designer
-  3 Years+`,
   name: 'LU',
   role: 'UI Designer',
   workYears: 3,
@@ -176,8 +145,6 @@ export const mbLU = {
 
 export const mbZachYang = {
   id: _uniqueId(),
-  introduction: `Technique Advisor
-  20 Years+`,
   name: 'Dr. Zach Yang',
   role: 'Technique Advisor',
   workYears: 20,
@@ -187,8 +154,6 @@ export const mbZachYang = {
 
 export const mbLeo = {
   id: _uniqueId(),
-  introduction: `Security Advisor
-  10 Years+`,
   name: 'Leo',
   role: 'Security Advisor',
   workYears: 10,

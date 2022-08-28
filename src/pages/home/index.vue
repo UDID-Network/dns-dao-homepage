@@ -57,23 +57,13 @@ const researchList: Research[] = reactive([
   },
 ]);
 
-const memberList: Member[] = reactive([
-  mbRicheyLiao,
-  mbXYChan,
-  mbWadeTsai,
-  mbLucas,
-  mbSion,
-  mbWell,
-  mbBin,
-  mbMaksim,
-  mbFang,
-  mbRefu,
-  mbMark,
-  mbM,
-  mbLU,
-  mbZachYang,
-  mbLeo,
-]);
+const memberGroup = [
+  [mbRicheyLiao, mbXYChan, mbWadeTsai, mbLucas, mbSion, mbWell, mbBin, mbMaksim],
+  [mbFang, mbRefu, mbMark, mbM, mbLU, mbZachYang, mbLeo],
+];
+const memberGroupIndex = ref<number>(0);
+
+const memberList = ref<Member[]>(memberGroup[memberGroupIndex.value]);
 
 const newsList: News[] = reactive([
   {
@@ -92,7 +82,7 @@ const newsList: News[] = reactive([
     previewImg: newsImg2,
     introduction:
       'In Web3, we already have a decen-tralized wallet address, but it is just like a bank account, which can only meet the needs of finance.',
-    link: '',
+    link: ResearchReport,
   },
 ]);
 
@@ -130,15 +120,15 @@ const navList = reactive([
     value: 'project-container',
   },
   {
-    label: 'Developers',
+    label: 'Member',
     value: 'member-container',
   },
   {
-    label: 'Vote',
+    label: 'Governance',
     value: 'about-container',
   },
   {
-    label: 'News',
+    label: 'Media',
     value: 'social-container',
   },
   {
@@ -206,6 +196,22 @@ const handleProjectClick = (index: number) => {
     navBg.style.height = `${clientHeight}px`;
     pSwiper.slideTo(index, 1000, true);
   }, 0);
+};
+
+const changeMemberList = (direction: DIRECTION = DIRECTION.LEFT) => {
+  const length = memberGroup.length;
+  let activeIndex = memberGroupIndex.value;
+
+  if (direction === DIRECTION.LEFT) {
+    if (activeIndex >= length - 1) return;
+    activeIndex++;
+  } else {
+    if (activeIndex <= 0) return;
+    activeIndex--;
+  }
+
+  memberGroupIndex.value = activeIndex;
+  memberList.value = memberGroup[activeIndex];
 };
 
 const handleProjectImgLoaded = (event: Event) => {
@@ -351,7 +357,7 @@ onBeforeUnmount(() => {
                           <p>
                             {{ member.role }}
                           </p>
-                          <p>{{ member.workYears }} Years+</p>
+                          <p>{{ member.workYears + ' Years+' }}</p>
                         </div>
                         <div class="project-member-list-item-contact-list">
                           <a
@@ -388,26 +394,49 @@ onBeforeUnmount(() => {
         <nav class="subtitle">Members</nav>
       </div>
       <div class="member-list-container">
-        <div v-for="item in memberList" :key="item.id" class="member-list-item">
-          <div class="member-list-item-img-box"><img :src="item.icon" alt="" /></div>
-          <div class="member-list-item-desc-box">
-            <p class="member-list-item-title">{{ item.name }}</p>
-            <div class="member-list-item-info">
-              <div class="member-list-item-desc">{{ item.introduction }}</div>
-              <div class="member-list-item-contact-list">
-                <a
-                  v-for="method in item.contacts"
-                  :key="method.type"
-                  class="member-list-item-contact-item"
-                  :href="method.link"
-                  target="_blank"
-                >
-                  <i :class="'member-list-item-contact-item-icon ' + method.type"></i>
-                </a>
+        <div
+          :class="{
+            'member-list-prev-btn': true,
+            disabled: memberGroupIndex === 0,
+          }"
+          @click="changeMemberList(DIRECTION.RIGHT)"
+        ></div>
+        <div class="member-list-container-wrapper">
+          <div v-for="item in memberList" :key="item.id" class="member-list-item">
+            <div class="member-list-item-img-box"><img :src="item.icon" alt="" /></div>
+            <div class="member-list-item-desc-box">
+              <p class="member-list-item-title">{{ item.name }}</p>
+              <div class="member-list-item-info">
+                <div class="member-list-item-desc">
+                  <p>
+                    {{ item.role }}
+                  </p>
+                  <p>
+                    {{ item.workYears + ' Years+' }}
+                  </p>
+                </div>
+                <div class="member-list-item-contact-list">
+                  <a
+                    v-for="method in item.contacts"
+                    :key="method.type"
+                    class="member-list-item-contact-item"
+                    :href="method.link"
+                    target="_blank"
+                  >
+                    <i :class="'member-list-item-contact-item-icon ' + method.type"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div
+          :class="{
+            'member-list-next-btn': true,
+            disabled: memberGroupIndex === memberGroup.length - 1,
+          }"
+          @click="changeMemberList(DIRECTION.LEFT)"
+        ></div>
       </div>
     </section>
     <section class="about-container">
@@ -432,14 +461,16 @@ onBeforeUnmount(() => {
         <div class="news-list">
           <nav v-for="item in newsList" :key="item.id" class="news-item">
             <div class="news-sub-title">{{ item.subTitle }}</div>
-            <div class="news-title">
-              {{ item.title }}
-            </div>
-            <div class="news-preview-img">
-              <img :src="item.previewImg" alt="" />
-            </div>
-            <a class="news-introduction" :href="item.link" target="_blank">
-              {{ item.introduction }}
+            <a :href="item.link" target="_blank">
+              <div class="news-title">
+                {{ item.title }}
+              </div>
+              <div class="news-preview-img">
+                <img :src="item.previewImg" alt="" />
+              </div>
+              <div class="news-introduction">
+                {{ item.introduction }}
+              </div>
             </a>
           </nav>
         </div>
@@ -474,19 +505,23 @@ onBeforeUnmount(() => {
           <span>Gateway to Creation and Governance for Web 3.0 Product</span>
         </div>
         <nav class="contact-details">
-          <a class="contact-item icon-msg" href="https://discord.gg/3A4vg4T4yg" target="_blank" />
-          <a class="contact-item icon-twitter" href="https://twitter.com/dnsDAO" target="_blank" />
           <a
-            class="contact-item icon-facebook"
+            class="contact-item icon-youtube"
             href="https://www.youtube.com/watch?v=49b1ZrBKDZo"
             target="_blank"
           />
+          <a class="contact-item icon-twitter" href="https://twitter.com/dnsDAO" target="_blank" />
+          <a class="contact-item icon-medium" href="https://medium.com/@dnsDAO" target="_blank" />
           <a
             class="contact-item icon-telegram"
             href="https://t.me/+fOvnclkFC8ViMTll"
             target="_blank"
           />
-          <a class="contact-item icon-github" href="https://medium.com/@dnsDAO" target="_blank" />
+          <a
+            class="contact-item icon-discord"
+            href="https://discord.gg/3A4vg4T4yg"
+            target="_blank"
+          />
         </nav>
       </div>
       <div class="copyright">Copyright 2022 dnsDAO</div>

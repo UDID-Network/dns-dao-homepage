@@ -1,11 +1,12 @@
 {
   "name": "vite-vue-proste",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "dev": "vite --port 4002",
     "build": "vue-tsc --noEmit && vite build",
     "gh-pages": "vue-tsc --noEmit && vite build --mode staging --base=/dns-dao-homepage/",
+    "gh:deploy":"node bin/gh-publish.js",
     "preview": "vite preview",
     "test": "vitest",
     "lint:style": "stylelint src/**/*.*.scss",

@@ -25,13 +25,16 @@ async function main() {
   await buildProject();
 
   fs.copySync(srcDist, targetDocs, { overwrite: true });
+  PrintInfo(`Copy dist to ${targetDocs} complete.`);
 
   fs.ensureFileSync(publishFile);
   fs.writeFileSync(publishFile, `Version: ${version}\nBuild Time: ${buildTime}\n`, {
     encoding: 'utf8',
   });
 
-  return `Copy success`;
+  PrintInfo(`Write tag complete. ${publishFile}`);
+
+  return `Build & Copy success`;
 }
 
 async function buildProject() {

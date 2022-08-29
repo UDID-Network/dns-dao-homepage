@@ -19,7 +19,7 @@ import userIcon15 from '@assets/images/common/users/asset_15.png';
 
 export const mbRicheyLiao = {
   id: _uniqueId(),
-  name: 'Richey Liao',
+  name: 'Rickey Liao',
   role: 'Blockchain Architect',
   workYears: 20,
   icon: userIcon1,
@@ -43,7 +43,7 @@ export const mbWadeTsai = {
 
 export const mbXYChan = {
   id: _uniqueId(),
-  name: 'XY Chan',
+  name: 'Tony Chang',
   role: 'Blockchain Industry Early Invester',
   workYears: 15,
   icon: userIcon3,

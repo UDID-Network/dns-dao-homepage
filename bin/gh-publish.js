@@ -82,11 +82,19 @@ function getCurrentDateinfo() {
   const day = d.getDate() < 10 ? `0${d.getDate()}` : '' + d.getDate();
 
   const dts = parseInt(d.getTime() / 1000);
+  let hours = d.getHours();
+  hours = hours > 9 ? hours : `0${hours}`;
+  let minutes = d.getMinutes();
+  minutes = minutes < 10 ? `0${minutes}` : minutes;
+  const time = `${hours}:${minutes}`;
 
   return {
     y: d.getFullYear(),
     m: month,
     d: day,
+    hours,
+    minutes,
+    time,
     dts,
   };
 }

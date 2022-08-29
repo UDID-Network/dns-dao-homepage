@@ -91,7 +91,7 @@ const newsList: News[] = reactive([
         <div class="about-content-container-box">
           <div class="about-content-container-title">Governance</div>
           <div class="about-content-container-introduction">
-            Anyone can submit Proposals. And the proposals are debated by the community, then
+            Anyone can submit proposals. And the proposals are debated by the community, then
             accepted or rejected.
           </div>
         </div>

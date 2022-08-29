@@ -115,7 +115,7 @@ onBeforeUnmount(() => {
 <template>
   <section class="project-container">
     <div class="home-page-subtitle-container">
-      <nav class="subtitle">Projects</nav>
+      <nav class="subtitle">Project</nav>
     </div>
     <div class="project-content-container">
       <div class="project-list-nav">

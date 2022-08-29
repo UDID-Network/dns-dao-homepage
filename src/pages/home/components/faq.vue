@@ -18,7 +18,7 @@ const faqList: FAQ[] = reactive([
     id: 'faq3',
     question: 'What’s the relationship between dnsDAO and UDID Network?',
     answer:
-      'UDID Network is the first product devised and launched by the early members of dnsDAO. At present, some early members of the community propose that d nsDAO become the only governance organization of UDID Network. This proposal is still to be discussed and determined by the community.',
+      'UDID Network is the first product devised and launched by the early members of dnsDAO. At present, some early members of the community propose that dnsDAO become the only governance organization of UDID Network.',
   },
   {
     id: 'faq4',

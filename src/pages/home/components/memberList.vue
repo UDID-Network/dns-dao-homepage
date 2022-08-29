@@ -61,7 +61,7 @@ const onMemberGroupSwiperInit = (swiper: SwiperType.Swiper) => {
 <template>
   <section class="member-container">
     <div class="home-page-subtitle-container">
-      <nav class="subtitle">Members</nav>
+      <nav class="subtitle">Member</nav>
     </div>
     <div class="member-list-container">
       <div

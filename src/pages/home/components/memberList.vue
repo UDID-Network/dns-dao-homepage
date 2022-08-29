@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Member, DIRECTION } from '../types';
+import { reactive, ref } from 'vue';
+
+import { Controller } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import SwiperType from 'swiper/types'; //引入类型文件
+import 'swiper/css';
+
+import { DIRECTION } from '../types';
 import {
   mbRicheyLiao,
   mbXYChan,
@@ -19,15 +25,19 @@ import {
   mbLeo,
 } from '../members';
 
-const memberGroup = [
-  [mbRicheyLiao, mbXYChan, mbWadeTsai, mbLucas, mbSion, mbWell, mbBin, mbMaksim],
-  [mbFang, mbRefu, mbMark, mbM, mbLU, mbZachYang, mbLeo],
-];
+const memberGroup = reactive([
+  { list: [mbRicheyLiao, mbXYChan, mbWadeTsai, mbLucas, mbSion, mbWell, mbBin, mbMaksim] },
+  { list: [mbFang, mbRefu, mbMark, mbM, mbLU, mbZachYang, mbLeo] },
+]);
 
 const memberGroupIndex = ref<number>(0);
-const memberList = ref<Member[]>(memberGroup[memberGroupIndex.value]);
+const memberGroupSwiper = ref<SwiperType.Swiper | null>(null);
 
 const changeMemberList = (direction: DIRECTION = DIRECTION.LEFT) => {
+  const pSwiper = memberGroupSwiper.value;
+
+  if (!pSwiper) return;
+
   const length = memberGroup.length;
   let activeIndex = memberGroupIndex.value;
 
@@ -40,7 +50,11 @@ const changeMemberList = (direction: DIRECTION = DIRECTION.LEFT) => {
   }
 
   memberGroupIndex.value = activeIndex;
-  memberList.value = memberGroup[activeIndex];
+  pSwiper.slideTo(activeIndex, 1000, true);
+};
+
+const onMemberGroupSwiperInit = (swiper: SwiperType.Swiper) => {
+  memberGroupSwiper.value = swiper;
 };
 </script>
 
@@ -57,35 +71,44 @@ const changeMemberList = (direction: DIRECTION = DIRECTION.LEFT) => {
         }"
         @click="changeMemberList(DIRECTION.RIGHT)"
       ></div>
-      <div class="member-list-container-wrapper">
-        <div v-for="item in memberList" :key="item.id" class="member-list-item">
-          <div class="member-list-item-img-box"><img :src="item.icon" alt="" /></div>
-          <div class="member-list-item-desc-box">
-            <p class="member-list-item-title">{{ item.name }}</p>
-            <div class="member-list-item-info">
-              <div class="member-list-item-desc">
-                <p>
-                  {{ item.role }}
-                </p>
-                <p>
-                  {{ item.workYears + ' Years+' }}
-                </p>
-              </div>
-              <div class="member-list-item-contact-list">
-                <a
-                  v-for="method in item.contacts"
-                  :key="method.type"
-                  class="member-list-item-contact-item"
-                  :href="method.link"
-                  target="_blank"
-                >
-                  <i :class="'member-list-item-contact-item-icon ' + method.type"></i>
-                </a>
+      <swiper
+        :modules="[Controller]"
+        :allow-touch-move="false"
+        class="mySwiper"
+        @init="onMemberGroupSwiperInit"
+      >
+        <swiper-slide v-for="(item, index) in memberGroup" :key="index">
+          <div class="member-list-container-wrapper">
+            <div v-for="member in item.list" :key="member.id" class="member-list-item">
+              <div class="member-list-item-img-box"><img :src="member.icon" alt="" /></div>
+              <div class="member-list-item-desc-box">
+                <p class="member-list-item-title">{{ member.name }}</p>
+                <div class="member-list-item-info">
+                  <div class="member-list-item-desc">
+                    <p>
+                      {{ member.role }}
+                    </p>
+                    <p>
+                      {{ member.workYears + ' Years+' }}
+                    </p>
+                  </div>
+                  <div class="member-list-item-contact-list">
+                    <a
+                      v-for="method in member.contacts"
+                      :key="method.type"
+                      class="member-list-item-contact-item"
+                      :href="method.link"
+                      target="_blank"
+                    >
+                      <i :class="'member-list-item-contact-item-icon ' + method.type"></i>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </swiper-slide>
+      </swiper>
       <div
         :class="{
           'member-list-next-btn': true,

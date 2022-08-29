@@ -2,13 +2,14 @@
   background: rgba(0, 0, 0, 0.02);
   padding-bottom: 160px;
   .member-list-container {
-    width: 1136px;
+    width: 1156px;
     margin: 0 auto;
     position: relative;
     .member-list-container-wrapper {
       display: flex;
       flex-flow: wrap;
       justify-content: space-between;
+      padding: 10px;
     }
     .member-list-item {
       width: 560px;
